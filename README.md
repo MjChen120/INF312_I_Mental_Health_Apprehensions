@@ -4,6 +4,8 @@
 
 This repo consists a data analysis project associated with *Telling Stories with Data*. This paper analyzes possible demographic factors and impacts of Mental Health Act (MHA) Apprenhsions in Toronto area. Specifically, the report speculates the relationship between gender, age cohort, police station division (i.e. neighbourhood), and total number of police annual reports over the years. 
 
+No LLMs were used for any of the creation in this repo.
+
 ## File Structure
 
 The repo is structured as:
