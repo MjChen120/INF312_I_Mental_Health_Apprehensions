@@ -30,14 +30,8 @@ raw_mentalHealth_data <-
 
 ## Police Annual Report
 package <- show_package("police-annual-statistical-report-arrested-and-charged-persons")
-
-# get all resources for this package
 resources <- list_package_resources("police-annual-statistical-report-arrested-and-charged-persons")
-
-# identify datastore resources; by default, Toronto Open Data sets datastore resource format to CSV for non-geospatial and GeoJSON for geospatial resources
 datastore_resources <- filter(resources, tolower(format) %in% c('csv', 'geojson'))
-
-# load the first datastore resource as a sample
 raw_crime_data <- filter(datastore_resources, row_number()==1) %>% get_resource()
 
 
