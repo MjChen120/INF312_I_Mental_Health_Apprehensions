@@ -51,6 +51,6 @@ names(summerized_C_data)[names(summerized_C_data) == "name"] <- "counts"
 merged_data <- rbind(summerized_MHA_data,summerized_C_data)
 
 #### Save data ####
-write.csv(cleaned_mentalHealth_data , "inputs/data/cleaned_mentalHealth_data.csv") 
-write.csv(cleaned_crime_data, "inputs/data/cleaned_crime_data.csv")
-write.csv(merged_data, "inputs/data/summerized_report_data.csv")
+write.csv(cleaned_mentalHealth_data , "outputs/data/cleaned_mentalHealth_data.csv") 
+write.csv(cleaned_crime_data, "outputs/data/cleaned_crime_data.csv")
+write.csv(merged_data, "outputs/data/summerized_report_data.csv")
