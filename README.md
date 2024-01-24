@@ -19,5 +19,5 @@ The repo is structured as:
 2.  Run `scripts/02-data_cleaning.R` to generate cleaned data
 3.  Run `outputs/paper/MHA_study.qmd` to generate the PDF of the paper
 
-## LLM Usage Statement
+## Statement on LLM usage
 No LLMs were used for any of the creation in this repo.
