@@ -6,7 +6,7 @@ author:
 thanks: "Code and data are available at: https://github.com/MjChen120/Mental_Health_Apprehensions_Toronto."
 date: today
 date-format: long
-abstract: "To have a general idea in terms of statistics of Mental Health Act (MHA) Apprehensions in Toronto area, two of the dataset publically avaliable from Toronto Open Data Portal are speculated by using histograms and scatter plots. In general, the number of apprenhsions increases by year and a decrease in the number starts in 2022, males in age cohort 25-34 are more likely to have mental health related apprehensions, and the total number of the crimes and MHA apprehensions might also have indirect correlation within the same area. Although possible trends are detected, no relations are actually analyzed at this point of time. This report purposes to detect possible trends for future inspection and research."
+abstract: "To have a general idea in terms of statistics of Mental Health Act (MHA) Apprehensions in Toronto area, two of the dataset publically avaliable from Toronto Open Data Portal are speculated by using histograms and scatter plots. In general, the number of apprenhsions increases by year and a decrease in the number starts in 2022, males in age cohort 25-34 are more likely to have mental health related apprehensions, and the total number of the crimes and MHA apprehensions might also have indirect correlation within the same area. Although possible trends are detected, no relations are actually analyzed at this point of time. This report purposes to detect possible trends for future inspection and research regarding Mental health related Apprehsions and possible contributing variables."
 format: pdf
 toc: true
 number-sections: true
@@ -47,20 +47,22 @@ summerized_report_data <- read.csv("summerized_report_data.csv")
 
 ## Introduction
 
-By statistics, in any given year, 1 in 5 Canadians experiences a mental illness. By the time Canadians reach 40 years old of age, 1 in 2 have - or have had - a mental illness [@CAMH]. Mental health issues are not uncommon and should be treated seriously just like other types of health issues. Toronto is one of the major cities in Canada, which is also the capital of Province Ontario. Toronto fields includes old 140 City of Toronto Neighborhoods structure as well as the new 158 City of Toronto Neighborhoods structure. The mental health of residents draw our attention of whether people are having healthy mental status at this big city. The Mental Health Act (MHA) apprehensions and reports hints the overall well-being of the residents in the area. This report is interested in possible factors that contributes to the numbers of apprehensions under MHA. 
+By statistics, in any given year, 1 in 5 Canadians experiences a mental illness. By the time Canadians reach 40 years old of age, 1 in 2 have - or have had - a mental illness [@CAMH]. Mental health issues are not uncommon and should be treated seriously just like other types of health issues. Toronto is one of the major cities in Canada, which is also the capital of Province Ontario. Toronto fields includes old 140 City of Toronto Neighborhoods structure as well as the new 158 City of Toronto Neighborhoods structure. The large city draws our attention regarding the mental health status of its residents. What are the demographic factors of the population that is being apprehended under the Mental Health Act (MHA) in Toronto city? This report is interested in possible factors that contributes to the numbers of apprehensions under MHA. 
 
-This particular report thus examines the MHA Apprehensions data set [@torontoMHA] provided by Toronto Public Data by using R language [@citeR] to provide a overview of the statistics both demographic and year-related in regards of the mental health apprehensions. To elaborate, the relationships between number of reports and year, gender, and age are studied in this report.To hypothesize, the demographic factors gender and age correlates with the number of MHA Apprehensions. In addition, the number of Mental Health Apprehensions could be in some way related to total number of reported crimes in the same neighborhood. Thus, in addition to the Mental Health Apprehensions, Police Annual Statistical Report Data [@torontoPoliceAnnual] regarding arrested and charged persons from Open Data Toronto [@opendatatoronto] is loaded for comparing the number of crimes reported and number of MHA apprehensions in the same area to see if there is any correlation between the two. 
+The MHA apprehensions and reports data set from Open Data Toronto Portal [@opendatatoronto] could be hinting the overall well-being of the residents in the area. This particular report thus examines the MHA Apprehensions data set [@torontoMHA] provided by Toronto Public Data by using R language [@citeR] to provide a overview of the statistics both demographic and year-related in regards of the mental health apprehensions. To elaborate, the relationships between number of reports and year, gender, and age are studied in this report. 
 
-In result, potential trends in terms of relation between the demographic factors and crime rate in the same area division were detected. The relations were not statistically analyzed at this point of time, however, this report provides a foundation for research studies regarding the similar topics for Toronto area in the future. This report includes the introduction of the data sets used, demographic analysis, and a discussion with limitations at the end.
+To hypothesize, the demographic factors gender and age correlates with the number of MHA Apprehensions. In addition, the number of Mental Health Apprehensions could be in some way related to total number of reported crimes in the same neighborhood. Thus, a supplementary dataset called Police Annual Statistical Report [@torontoPoliceAnnual] regarding arrested and charged persons from Open Data Toronto [@opendatatoronto] is loaded for comparing the number of crimes reported in total and number of MHA apprehensions in the same area division to see if there is any correlation between the two. 
+
+In result, potential trends in terms of relation between the demographic factors and crime rate in the same area division were detected. The relations were not statistically analyzed at this point of time, however, this report provides a foundation for research studies regarding the similar topics for Toronto area in the future. This report includes the introduction of the data sets in Data section, demographic analysis in Results section, and a Discussion section with limitations at the end.
 
 
 ## Data {#sec-data}
 
-For the report, data used are retrieved from Public online resource called Open Data Toronto Portal through the library `opendatatoronto` [@opendatatoronto].The data selected for the purpose of analysis are two package data sets called "Mental Health Act Apprehensions" [@torontoMHA] and "Police Annual Statistical Report - Arrested and Charged Persons" [@torontoPoliceAnnual]. We downloaded, cleaned and tidied the data set using the statistical programming language R [@citeR] including the `tidyverse` [@tidyverse], `janitor` [@janitor], `ggplot2` [@ggplot2], `dplyr` [@dplyr], `readr` [@readr], `tibble` [@tibble], `kableExtra` [@kableExtra], and `knitr` [@knitr]
+For the report, data used are retrieved from public online resource called Open Data Toronto Portal through the library `opendatatoronto` [@opendatatoronto].The data selected for the purpose of analysis are two package data sets called "Mental Health Act Apprehensions" [@torontoMHA] and "Police Annual Statistical Report - Arrested and Charged Persons" [@torontoPoliceAnnual]. Both of the data sets are measured mainly based on reported made from facilities. We downloaded, cleaned and tidied the data set using the statistical programming language R [@citeR] including the `tidyverse` [@tidyverse], `janitor` [@janitor], `ggplot2` [@ggplot2], `dplyr` [@dplyr], `readr` [@readr], `tibble` [@tibble], `kableExtra` [@kableExtra], and `knitr` [@knitr].
 
 ### Demographics of Mental Health Act Apprehensions
 
-The primary data from "Mental Health Act Apprehensions"  captures all Mental Health Act (MHA) Apprehensions pursuant to the MHA [@torontoMHA]. The data consists 25 variables, including the gender, age cohort, and year of the MHA apprehension reports. This particular data is chosen for the interest of the paper and no similar data sets are available from Open Data Toronto. Those three variables in particular and with the counting of the number of the cases will be used for demographic analysis. Each event number in the data set is a distinct MHA Apprehension and the data is queried based on report dates (@tbl-cleaned-mentalHealth-data).
+The primary data from "Mental Health Act Apprehensions" captures all Mental Health Act (MHA) Apprehensions pursuant to the MHA [@torontoMHA]. The data consists 25 variables, including the gender, age cohort, and year of the MHA apprehension reports. This particular data is chosen for the interest of the paper and no similar data sets are available from Open Data Toronto. Those three variables in particular and with the counting of the number of the cases will be used for demographic analysis. Each event number in the data set is a distinct MHA Apprehension and the data is queried based on report dates (@tbl-cleaned-mentalHealth-data).
 
 ```{r}
 #| echo: false
@@ -115,7 +117,7 @@ head(demo,10) |>
     kable(
       booktabs = TRUE,
       col.names = c("ID", "Arrest-Year", "Division", "Counts", "Type"),
-      align = c("c", "l", "c", "c", "c")
+      align = c("c", "c", "c", "c", "c")
         )
 ```
 
@@ -123,7 +125,7 @@ head(demo,10) |>
 
 ### Number of Reports by Years
 
-The year of the reports and numbers of reports recorded in a year is being visualized by a histogram. As we can see, the number increases as the year increases until 2022. After 2022, the number of apprehensions decreases (@fig-years). This might be an indicator where residents' mental healthy generally becomes better after 2022. The differences between year categories might not necessarily be significant at this point of analysis. In comparison, the total of number of arrests in general decreases through the years with a increase until the year of 2020. Although the trend of the data both changed, no scientific evidence supports the theory that the number of reports might be influenced by Covid-19 pandemic; however, the difference in the trends of the data over the years might hints the insight that the number of MHA apprehensions might not be directly correlated to the number of total arrests.
+The year of the reports and numbers of reports recorded in a year is being visualized by a histogram. The data is cleaned again for this purpose specifically to remove parts of the data that lack gender and age cohort reports. As we can see, the number increases as the year increases until 2022. After 2022, the number of apprehensions decreases (@fig-years). This might be an indicator where residents' mental healthy generally becomes better after 2022. The differences between year categories might not necessarily be significant at this point of analysis. In comparison, the total of number of arrests in general decreases through the years with a increase until the year of 2020. Although the trend of the data both changed, no scientific evidence supports the theory that the number of reports might be influenced by Covid-19 pandemic; however, the difference in the trends of the data over the years might hints the insight that the number of MHA apprehensions might not be directly correlated to the number of total arrests.
 
 ```{r}
 #| label: fig-years
@@ -239,6 +241,65 @@ $$ {#eq-relation}
 There are many weaknesses and limitation of the research. For MHA apprehension data, a unique event recorded in the data does not represent as an apprehension of a distinct individual: an individual may have been apprehended multiple times under the Mental Health Act, with those apprehensions recorded each with a unique event number in the data set. This fact probably applies to the Police Annual report data set as well, even though not mentioned in its description. This fact indicates that the visualization in the report does not represent number of people who are apprehended or arrested, but rather how many times those events happened. That could potentially affect the data and how to interpret data as one individual is responsible for a large amount of the apprehensions and crimes. For instance, the reason why males from 25 to 34 years old are generally apprehended more in the data (@fig-groups) could be due to one male being apprehended multiple times. Furthermore, MHA Apprehensions data recorded events from year 2014 to 2022, whereas the crime data set only has events from year 2014 to 2023. The lack of one year data could dramatically change the outlook of the data visualizations due to the fact that only averaged number of reports over the years per division from MHA and crime data sets were used (@fig-years).
 
 Other than limitations, the exact relationships are not evaluated statistically in this report; thus, in terms of future directions, actual correlations and relations can be analyzed by conducting proper statistical analysis such as Power or Model analysis. Better way of tidying and cleaning data could be done for current data limitations. Additional data sets and field studies could as well be conducted and used for supplementing the statistical analysis regarding the topic. 
+\newpage
+
+\appendix
+
+## Appendix {-}
+
+### Additional data details
+This appendix includes the snapshots of the data sets cleaned, tidied, and used for the purpose of the research. 
+The script for data cleaning and the actual raw and cleaned data sets are available at https://github.com/MjChen120/Mental_Health_Apprehensions_Toronto
+
+#### Overview of Data Mental Health Apprehsions 
+
+```{r}
+#| echo: false
+#| message: false
+#referenced kable stying from https://github.com/EthanSansom/torontocitytrees/blob/main/outputs/paper/paper.Rmd
+
+head(cleaned_mentalHealth_data,15) |>
+  relocate(any_of(c("X","year","division","sex","age_cohort"))) |>
+    kable(
+      booktabs = TRUE,
+      col.names = c("ID", "Report-Year", "Division", "Gender", "Age cohort"),
+      align = c("c", "c", "c", "c", "c")
+        )
+```
+
+#### Overview of Data Police Annual Report
+
+```{r}
+#| echo: false
+#| message: false
+#referenced kable stying from https://github.com/EthanSansom/torontocitytrees/blob/main/outputs/paper/paper.Rmd
+
+head(cleaned_crime_data,15) |>
+  relocate(any_of(c("X","year","division","counts"))) |>
+    kable(
+      booktabs = TRUE,
+      col.names = c("ID", "Arrest-Year", "Division", "Counts"),
+      align = c("c", "c", "c", "c", "c")
+        )
+```
+
+#### Overview of Data Sets Summerized and Combined 
+
+The additional data set used for analysis is combined by R. All the number of MHA reports in the year for the same division is counted as the variable "counts" in MHA Apprehension data set; whereas all the reported numbers of the crimes for same division in the same year are summed as a column of "counts" as well in Police annual reports. The two data sets are then combined together with an extra column indicating the type of the reports they are from to differentiate (for example, "ALL" indicates the counts is for general police report, and "MHA" indicates the counts is for MHA report. 
+
+```{r}
+#| echo: false
+#| message: false
+#referenced kable stying from https://github.com/EthanSansom/torontocitytrees/blob/main/outputs/paper/paper.Rmd
+
+head(summerized_report_data,15) |>
+  relocate(any_of(c("X","year","division","counts","type"))) |>
+    kable(
+      booktabs = TRUE,
+      col.names = c("ID", "Arrest-Year", "Division", "Counts", "Type"),
+      align = c("c", "c", "c", "c", "c")
+        )
+```
 
 \newpage
 ## References
