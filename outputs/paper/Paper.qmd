@@ -1,12 +1,12 @@
 ---
-title: "Analysis of Possible Demorgraphic Factors Influencing Report of Mental Health Act Apprehensions in Toronto Area"
+title: "Analysis of Possible Demographic Factors Influencing Report of Mental Health Act Apprehensions in Toronto Area"
 title-block-banner: true
 author: 
   - Mingjia Chen
 thanks: "Code and data are available at: https://github.com/MjChen120/Mental_Health_Apprehensions_Toronto."
 date: today
 date-format: long
-abstract: "To have a general idea in terms of statistics of Mental Health Act (MHA) Apprehensions in Toronto area, two of the dataset publically avaliable from Toronto Open Data Portal are speculated by using histograms and scatter plots. In general, the number of apprenhsions increases by year and a decrease in the number starts in 2022, males in age cohort 25-34 are more likely to have mental health related apprehensions, and the total number of the crimes and MHA apprehensions might also have indirect correlation within the same area. Although possible trends are detected, no relations are actually analyzed at this point of time. This report purposes to detect possible trends for future inspection and research regarding Mental health related Apprehsions and possible contributing variables."
+abstract: "To have a general idea in terms of statistics of Mental Health Act (MHA) Apprehensions in the Toronto area, two of the datasets publically available from the Toronto Open Data Portal are speculated by using histograms and scatter plots. In general, the number of apprehensions increases by year and a decrease in the number starts in 2022, males in the age cohort 25-34 are more likely to have mental health-related apprehensions, and the total number of crimes and MHA apprehensions might also have indirect correlation within the same area. Although possible trends are detected, no relations are analyzed at this point. This report proposes to detect possible trends for future inspection and research regarding Mental health-related Apprehensions and possible contributing variables."
 format: pdf
 toc: true
 number-sections: true
