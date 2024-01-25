@@ -6,7 +6,7 @@ author:
 thanks: "Code and data are available at: https://github.com/MjChen120/Mental_Health_Apprehensions_Toronto."
 date: today
 date-format: long
-abstract: "To have a general idea in terms of statistics of Mental Health Act (MHA) Apprehensions in the Toronto area, two of the datasets publically available from the Toronto Open Data Portal are speculated by using histograms and scatter plots. In general, the number of apprehensions increases by year and a decrease in the number starts in 2022, males in the age cohort 25-34 are more likely to have mental health-related apprehensions, and the total number of crimes and MHA apprehensions might also have indirect correlation within the same area. Although possible trends are detected, no relations are analyzed at this point. This report proposes to detect possible trends for future inspection and research regarding Mental health-related Apprehensions and possible contributing variables."
+abstract: "To have a general idea in terms of statistics of Mental Health Act (MHA) Apprehensions in the Toronto area, two of the datasets publically available from the Toronto Open Data Portal are speculated by using histograms and scatter plots. In general, the number of apprehensions increases by year and a decrease in the number starts in 2022, males in the age cohort 25-34 are more likely to have mental health-related apprehensions, and the total number of crimes and MHA apprehensions might also have indirect correlation within the same area. Although possible trends are detected, no relations are analyzed at this point. Even though various literatures have been published regarding mental health status, most of them lack a prespective in terms of law and crime: this report proposes to detect possible trends for future inspection and research regarding Mental health-related Apprehensions and possible contributing variables."
 format: pdf
 toc: true
 number-sections: true
@@ -47,11 +47,11 @@ summerized_report_data <- read.csv("summerized_report_data.csv")
 
 ## Introduction
 
-By statistics, in any given year, 1 in 5 Canadians experiences a mental illness. By the time Canadians reach 40 years old of age, 1 in 2 have - or have had - a mental illness [@CAMH]. Mental health issues are not uncommon and should be treated seriously just like other types of health issues. Toronto is one of the major cities in Canada, which is also the capital of Province Ontario. Toronto fields includes old 140 City of Toronto Neighborhoods structure as well as the new 158 City of Toronto Neighborhoods structure. The large city draws our attention regarding the mental health status of its residents. What are the demographic factors of the population that is being apprehended under the Mental Health Act (MHA) in Toronto city? This report is interested in possible factors that contributes to the numbers of apprehensions under MHA. 
+By statistics, in any given year, 1 in 5 Canadians experiences a mental illness. By the time Canadians reach 40 years old of age, 1 in 2 have - or have had - a mental illness [@CAMH]. Mental health issues are not uncommon and should be treated seriously just like other types of health issues. Toronto is one of the major cities in Canada, which is also the capital of Province Ontario. Toronto fields includes old 140 City of Toronto Neighborhoods structure as well as the new 158 City of Toronto Neighborhoods structure. Large cities are usually associated with fast pace of life, inflation, competition, and high pressure; this large city draws our attention regarding the mental health status of its residents. What are the demographic factors of the population that is being apprehended under the Mental Health Act (MHA) in Toronto city? This report is interested in possible factors that contributes to the numbers of apprehensions under MHA. 
 
-The MHA apprehensions and reports data set from Open Data Toronto Portal [@opendatatoronto] could be hinting the overall well-being of the residents in the area. This particular report thus examines the MHA Apprehensions data set [@torontoMHA] provided by Toronto Public Data by using R language [@citeR] to provide a overview of the statistics both demographic and year-related in regards of the mental health apprehensions. To elaborate, the relationships between number of reports and year, gender, and age are studied in this report. 
+The MHA apprehensions and reports data set from Open Data Toronto Portal [@opendatatoronto] could be hinting the overall well-being of the residents in the area. This particular report thus examines the MHA Apprehensions data set [@torontoMHA] provided by Toronto Public Data by using R language [@citeR] to provide a overview of the statistics both demographic and year-related in regards of the mental health apprehensions. Number of crimes and violence are usually associated with high testosterone level [@testPaper]; men in young adulthood have significant positive association with impulsive and violent criminal behavior. Demographic factors such as age and gender could thus play a key role of Mental Health related apprehensions or crime reports in general. To elaborate, the relationships between number of reports and year, gender, and age are studied in this report. 
 
-To hypothesize, the demographic factors gender and age correlates with the number of MHA Apprehensions. In addition, the number of Mental Health Apprehensions could be in some way related to total number of reported crimes in the same neighborhood. Thus, a supplementary dataset called Police Annual Statistical Report [@torontoPoliceAnnual] regarding arrested and charged persons from Open Data Toronto [@opendatatoronto] is loaded for comparing the number of crimes reported in total and number of MHA apprehensions in the same area division to see if there is any correlation between the two. 
+To hypothesize, the demographic factors gender and age correlates with the number of MHA Apprehensions. In addition, the number of Mental Health Apprehensions could be in some way related to total number of reported crimes in the same neighborhood. Thus, a supplementary data set called Police Annual Statistical Report [@torontoPoliceAnnual] regarding arrested and charged persons from Open Data Toronto [@opendatatoronto] is loaded for comparing the number of crimes reported in total and number of MHA apprehensions in the same area division to see if there is any correlation between the two. 
 
 In result, potential trends in terms of relation between the demographic factors and crime rate in the same area division were detected. The relations were not statistically analyzed at this point of time, however, this report provides a foundation for research studies regarding the similar topics for Toronto area in the future. This report includes the introduction of the data sets in Data section, demographic analysis in Results section, and a Discussion section with limitations at the end.
 
@@ -149,6 +149,7 @@ ggplot(report_data, aes(x = year, y = counts)) +
 
 ```
 
+\break
 
 ### Demographic Factors
 
@@ -166,7 +167,7 @@ age_per <- round(100 * nrow(age_per) / nrow(data), digits = 2)
 
 ```
 
-With sketching histograms, the number of reports in different groups of population are compared to each other based on gender and age. In addition, the two histograms are cross-referenced (@fig-groups). As result, males with age from 25 to 34 are more likely to report mental health apprehensions (`r male_per`% males, `r age_per`% with age cohort from 25 to 34). The differences between gender and age group are not tested in terms of significance even though it could be significant with high power level due to large sample size. The analysis has limitations such as it only includes binary gender (i.e., female vs. male); further limitations will be discussed after in the discussion section.
+With sketching histograms, the number of reports in different groups of population are compared to each other based on gender and age. In addition, the four histograms are drawn to visualize the difference between those groups (@fig-groups and @fig-combined). As result, males with age from 25 to 34 are more likely to report mental health apprehensions (`r male_per`% males, `r age_per`% with age cohort from 25 to 34). The differences between gender and age group are not tested in terms of significance even though it could be significant with high power level due to large sample size. The analysis has limitations such as it only includes binary gender (i.e., female vs. male); further limitations will be discussed after in the discussion section.
 
 ```{r}
 #| label: fig-groups
@@ -191,6 +192,39 @@ data |>
 
 ```
 
+```{r}
+#| label: fig-combined
+#| fig-cap: Gender and Age of People Apprehended Visulization Year-Depended
+#| fig-subcap: ["Gender","Age"]
+#| layout-ncol: 2
+#| echo: false
+#| warning: false
+#| message: false
+
+
+data |>
+  ggplot(aes(x = year, fill = sex)) +
+  geom_histogram(position = "dodge") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1") +
+  labs(
+    x = "Year",
+    y = "Occurrences",
+    fill = "Sex"
+  )
+
+data |>
+  ggplot(aes(x = year, fill = age_cohort)) +
+  geom_histogram(position = "dodge") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1") +
+  labs(
+    x = "Year",
+    y = "Occurrences",
+    fill = "Age Cohort"
+  )
+
+```
 \break
 
 ### Number of MHA versus Total Reports per Division
